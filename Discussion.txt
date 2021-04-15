@@ -1,0 +1,19 @@
+Controller
+-----------
+main()
+
+readArgument()
+> read number of arguments
+> interpret "-g", "-r", "-d", "-w"
+
+View
+-----
+Interface: OutputTree
+	Subclass 1: WriteFile
+	Subclass 2: ScreenDisplay
+
+Model
+------
+Interface: TreeGenerator
+	Subclass 1: FileGenerator     (Return Tree)
+	Subclass 2: RandomGenerator   (Return Tree)
