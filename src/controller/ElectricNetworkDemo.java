@@ -28,7 +28,7 @@ public class ElectricNetworkDemo
         {
             try
             {
-                readArgument(splitArg);
+                parseArgument(splitArg);
             }
             catch( ControllerException e )
             {
@@ -37,8 +37,10 @@ public class ElectricNetworkDemo
         }
     }
 
-    public static void readArgument ( String[] splitArg ) throws ControllerException
+    public static void parseArgument ( String[] splitArg ) throws ControllerException
     {
+        TreeGenerator generator = null;
+
         if ( splitArg[0].equals("-r") )
         {
             // Check if the next argument after -r is a file
@@ -50,6 +52,9 @@ public class ElectricNetworkDemo
                     if ( splitArg[2].equals("-d") ) {        // Output result to screen
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
+                        generator = new FileGenerator();
+                        generator.generateTree(splitArg[1]);
+                        
                         // TODO: Write to screen mode for
                         //       read from a file tree
                     }
@@ -89,7 +94,7 @@ public class ElectricNetworkDemo
         }
         else if ( splitArg[0].equals("-g") )
         {
-            if ( splitArg[1].equals("-d") ) {
+            if ( splitArg[1].equals("-d") ) {   // Output to the screen
                 if ( splitArg.length > 2 )
                     throw new ControllerException("Maximum mode selected has reached!\n");
                 // TODO: Write to screen mode for 
