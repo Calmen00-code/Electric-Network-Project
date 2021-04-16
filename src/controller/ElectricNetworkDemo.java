@@ -6,40 +6,42 @@
 
 package Assignment1.controller;
 import Assignment1.view.*;
-
-/*
 import Assignment1.model.*;
-*/
-
 
 public class ElectricNetworkDemo
 {
     public static void main(String[] args)
     {
         PrintMessage printMsg = new PrintMessage();
-        String[] splitArg = args[0].split(" ");
 
-        // Minimum parameter that the user must supply
-        if ( splitArg.length < 2 )
-            printMsg.print("Arguments cannot be empty!\n");
-        else if ( splitArg.length > 4 )
-            printMsg.print("Number of Arguments exceeded the limit!\n");
-        else
+        try
         {
-            try
+            String[] splitArg = args[0].split(" ");
+
+            // Minimum parameter that the user must supply
+            if ( splitArg.length < 2 )
+                printMsg.print("Arguments cannot be empty!\n");
+            else if ( splitArg.length > 4 )
+                printMsg.print("Number of Arguments exceeded the limit!\n");
+            else
             {
-                parseArgument(splitArg);
+                try
+                {
+                    parseArgument(splitArg);
+                } catch ( ControllerException e ) {
+                    printMsg.print(e.getMessage());
+                }
             }
-            catch( ControllerException e )
-            {
-                printMsg.print(e.getMessage());
-            }
+        } catch ( ArrayIndexOutOfBoundsException e ) {
+            printMsg.print("Please supply arguments as mode!\n");
         }
     }
 
     public static void parseArgument ( String[] splitArg ) throws ControllerException
     {
         TreeGenerator generator = null;
+        PrintMessage printMsg = null;
+        City city = null;
 
         if ( splitArg[0].equals("-r") )
         {
@@ -53,7 +55,8 @@ public class ElectricNetworkDemo
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
                         generator = new FileGenerator();
-                        generator.generateTree(splitArg[1]);
+                        city = generator.generateTree(splitArg[1]);
+                        printMsg.print( city );
                         
                         // TODO: Write to screen mode for
                         //       read from a file tree
@@ -86,6 +89,9 @@ public class ElectricNetworkDemo
                 catch(ArrayIndexOutOfBoundsException e) {
                     throw new ControllerException(
                         "Unrecognised Output Mode (Expected: -d (Print to screen) or -w (Write to file)\n");
+                }
+                catch(ModelException e) {
+                    printMsg.print(e.getMessage());
                 }
             }
             else
