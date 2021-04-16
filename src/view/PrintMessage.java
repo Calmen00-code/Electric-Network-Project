@@ -11,9 +11,8 @@ public class PrintMessage implements Output
     public PrintMessage() { }
 
     @Override
-    public void print( Object msgObj )
+    public void print( Object obj, String msg )
     {
-        String msg = (String)msgObj;
         System.out.print(msg);
     }
 }

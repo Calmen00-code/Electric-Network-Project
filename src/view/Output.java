@@ -8,5 +8,5 @@ package Assignment1.view;
 
 public interface Output
 {
-    public void print(Object s);
+    public void print(Object obj, String s);
 }

@@ -14,7 +14,7 @@ public class ScreenDisplayTree implements Output
     public ScreenDisplayTree() { }
 
     @Override
-    public void print( Object obj )
+    public void print( Object obj, String s )
     {
         City city = (City)obj;
         List <City> cityNetwork = city.getCity();

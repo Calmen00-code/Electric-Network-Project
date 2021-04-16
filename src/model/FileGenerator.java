@@ -87,6 +87,7 @@ public class FileGenerator implements TreeGenerator
                 }
                 line = reader.readLine();
             }
+            reader.close();
         }
         catch(IOException e)
         {

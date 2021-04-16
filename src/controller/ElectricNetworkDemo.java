@@ -20,20 +20,20 @@ public class ElectricNetworkDemo
 
             // Minimum parameter that the user must supply
             if ( splitArg.length < 2 )
-                printMsg.print("Arguments cannot be empty!\n");
+                printMsg.print(null, "Arguments cannot be empty!\n");
             else if ( splitArg.length > 4 )
-                printMsg.print("Number of Arguments exceeded the limit!\n");
+                printMsg.print(null, "Number of Arguments exceeded the limit!\n");
             else
             {
                 try
                 {
                     parseArgument(splitArg);
                 } catch ( ControllerException e ) {
-                    printMsg.print(e.getMessage());
+                    printMsg.print(null, e.getMessage());
                 }
             }
         } catch ( ArrayIndexOutOfBoundsException e ) {
-            printMsg.print("Please supply arguments as mode!\n");
+            printMsg.print(null, "Please supply arguments as mode!\n");
         }
     }
 
@@ -42,6 +42,7 @@ public class ElectricNetworkDemo
         TreeGenerator generator = null;
         PrintMessage printMsg = new PrintMessage();
         ScreenDisplayTree screen = new ScreenDisplayTree();
+        WriteFileTree writeFile = new WriteFileTree();
         City city = null;
 
         if ( splitArg[0].equals("-r") )
@@ -50,14 +51,15 @@ public class ElectricNetworkDemo
             // NOTE: A file must have an extension of "." (eg: *.txt, *.csv)
             if ( splitArg[1].contains(".") )
             {
-                generator = new FileGenerator();
                 try
                 {
+                    generator = new FileGenerator();
+                    city = generator.generateTree(splitArg[1]);
+
                     if ( splitArg[2].equals("-d") ) {        // Output result to screen
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
-                        city = generator.generateTree(splitArg[1]);
-                        screen.print( city );
+                        screen.print( city, "" );
                     }
                     else if ( splitArg[2].equals("-w") ) { // Output result to file
                         try
@@ -68,6 +70,7 @@ public class ElectricNetworkDemo
                             {
                                 if ( splitArg.length > 4 )
                                     throw new ControllerException("Maximum mode selected has reached!\n");
+                                writeFile.print( city, splitArg[3] );
                                 // TODO: Write to file mode
                                 //       for read from a file tree
                             }
@@ -89,7 +92,7 @@ public class ElectricNetworkDemo
                         "Unrecognised Output Mode (Expected: -d (Print to screen) or -w (Write to file)\n");
                 }
                 catch(ModelException e) {
-                    printMsg.print(e.getMessage());
+                    printMsg.print(null, e.getMessage());
                 }
             }
             else
