@@ -11,6 +11,12 @@ import java.util.*;
 public abstract class City
 {
     public City() { }
-    public List<City> getCity();
-    public String getName();
+
+    public List<City> getCity() { return null; }
+    public String getName() { return ""; }
+    public String getParentName() { return ""; }
+    public City find(String s) { return null; }
+    public void addComponent(City city) { }
+    public void addConsumption(String s, double val) { }
+    public String toString() { return ""; }
 }

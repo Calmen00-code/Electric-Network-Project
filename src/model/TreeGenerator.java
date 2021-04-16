@@ -6,9 +6,7 @@
 
 package Assignment1.model;
 
-import java.util.*
-
 public interface TreeGenerator
 {
-    public TreeSet generateTree( String s );
+    public City generateTree( String s ) throws ModelException;
 }

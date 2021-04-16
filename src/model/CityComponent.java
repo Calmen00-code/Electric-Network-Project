@@ -15,11 +15,13 @@ import java.util.*;
 public class CityComponent extends City
 {
     private String name;
+    private String parentName;
     private List<City> networks = new ArrayList<City>();
 
-    public CityComponent( String inName )
+    public CityComponent( String inName, String inParentName )
     {
         this.name = inName;
+        this.parentName = inParentName;
     }
 
     /**
@@ -41,10 +43,12 @@ public class CityComponent extends City
     * Traversing the networks and return the CityComponent object if exist
     * @import value that represents the object to be return
     */
+    @Override
     public City find( String searchValue )
     {
         City city = null;
-        if ( networks.contains(searchValue) )
+
+        if ( hasValue(searchValue) )
         {
             Iterator networkIte = networks.iterator();
             boolean found = false;
@@ -61,5 +65,48 @@ public class CityComponent extends City
     public String getName()
     {
         return name;
+    }
+
+    @Override
+    public String getParentName()
+    {
+        return parentName;
+    }
+
+    @Override
+    public String toString()
+    {
+        String str = "";
+
+        // Component does not have any building or any sub-component
+        if ( networks.isEmpty() )
+            str = name + "," + parentName;
+        else {
+            for ( City city : networks ) {
+                if ( isBuilding( city ) )
+                    str += city.toString();
+                else
+                    str += city.getName() + "," + city.getParentName() + "\n";
+            }
+        }
+        return str;
+    }
+
+    public boolean hasValue ( String searchValue )
+    {
+        Iterator networkIte = networks.iterator();
+        City city = null;
+        boolean found = false;
+
+        while ( networkIte.hasNext() && !found ) {
+            city = (City)networkIte.next();
+            found = city.getName().equals(searchValue);
+        }
+        return found;
+    }
+
+    public boolean isBuilding ( City city )
+    {
+        return (city instanceof CityBuilding);
     }
 }
