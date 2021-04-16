@@ -40,7 +40,8 @@ public class ElectricNetworkDemo
     public static void parseArgument ( String[] splitArg ) throws ControllerException
     {
         TreeGenerator generator = null;
-        PrintMessage printMsg = null;
+        PrintMessage printMsg = new PrintMessage();
+        ScreenDisplayTree screen = new ScreenDisplayTree();
         City city = null;
 
         if ( splitArg[0].equals("-r") )
@@ -49,17 +50,14 @@ public class ElectricNetworkDemo
             // NOTE: A file must have an extension of "." (eg: *.txt, *.csv)
             if ( splitArg[1].contains(".") )
             {
+                generator = new FileGenerator();
                 try
                 {
                     if ( splitArg[2].equals("-d") ) {        // Output result to screen
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
-                        generator = new FileGenerator();
                         city = generator.generateTree(splitArg[1]);
-                        printMsg.print( city );
-                        
-                        // TODO: Write to screen mode for
-                        //       read from a file tree
+                        screen.print( city );
                     }
                     else if ( splitArg[2].equals("-w") ) { // Output result to file
                         try
