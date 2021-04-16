@@ -84,7 +84,7 @@ public class CityComponent extends City
         else {
             for ( City city : networks ) {
                 if ( isBuilding( city ) )
-                    str += city.toString();
+                    str += city.toString() + "\n";
                 else
                     str += city.getName() + "," + city.getParentName() + "\n";
             }
