@@ -83,6 +83,7 @@ public class CityComponent extends City
         City cityNd;
 
         storeStack( networks, cityStack );
+        cityStack.pop();
 
         while ( !cityStack.isEmpty() ) {
             cityNd = cityStack.pop();
@@ -101,32 +102,13 @@ public class CityComponent extends City
     */
     public void storeStack( List <City> inNetworks, Stack <City> stack )
     {
-
         // Store city starting from the last element as Stack is LIFO
         // Therefore to maintain the sequence, store starting from the last element of network
-        for ( int i = 0; i < inNetworks.size(); ++i )
-            stack.push(networks.get(i));
+        for ( int i = inNetworks.size() - 1; i >= 0; --i ) {
+            stack.push(inNetworks.get(i));
+        }
     }
    
-    /*
-    public String toStringRec( Stack<City> cityStack, String str )
-    {
-        
-        return str;
-    }
-   
-        String str = "";
-        Iterator networkIte = networks.iterator();
-
-        // Component does not have any building or any sub-component
-        for ( City city : networks ) {
-            if ( isBuilding( city ) )
-                str += getSpace(city) + city.toString() + "\n";
-            else {
-
-                str += getSpace(city) + city.toString() + "\n";
-        }*/
-
     @Override
     public int getHeight()
     {

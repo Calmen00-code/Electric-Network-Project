@@ -16,6 +16,7 @@ public class FileGenerator implements TreeGenerator
     /**
     * Methods Overriden from TreeGenerator
     * Reads and generateTree from the file
+    * @export City Object which contains the whole tree
     */
     @Override 
     public City generateTree( String filename ) throws ModelException
@@ -38,7 +39,6 @@ public class FileGenerator implements TreeGenerator
                     city = new CityComponent( line, "", height );    // Creating root
                     city.addComponent( city );
                 }
-
             } 
             else 
                 throw new ModelException("Missing the root node\n");
