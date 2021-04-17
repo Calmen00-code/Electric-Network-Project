@@ -19,6 +19,7 @@ public class RandomGenerator implements TreeGenerator
     public City generateTree( String filename ) throws ModelException;
     {
         Random rand = new Random();
+        Queue <City> queue = new Queue<City>();
         String[] randomVal = readFile( filename );
         String[] value = null;
         int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
@@ -33,11 +34,64 @@ public class RandomGenerator implements TreeGenerator
 
         // Creating Subsequent non-root node and leaf node
         int numChild;
+        City currNd = city;
         for ( int i = 1; i < depth; ++i ) {
+            // Randomly generate the number of childrens for current node
             numChild = rand.next(MAX_NODE - MIN_NODE) + MIN_NODE;
-            createChild( city, numChild );
+
+            if ( i == 1 ) {
+                createChild( currNd, numChild, randomVal, i );
+                storeQueue( currNd, queue );
+            }
+            else {
+                // Create childrens for all nodes in current height
+                while ( !queue.isEmpty() && queue.peek().getHeight() == i ) {
+                    currNd = queue.pop();
+                    createChild( currNd, numChild, randomVal, i );
+
+                    // Does not need to store if currNd is leaf (CityBuilding)
+                    if ( currNd instanceof CityComponent )
+                        storeQueue( currNd, queue );
+                }
+            }
         }
     }
+
+    public void createChild( City city, int numChild, String[] randomVal, int height )
+    {
+        Random rand = new Random();
+        String[] splitChild = null;
+        String parentName, childName;
+        City cityNode;
+        int idxChild;
+        int nodeType;
+
+        for ( int i = 0; i < numChild; ++i ) {
+            // Create Child (nodeType = 0), Create Leaf (nodeType = 1)
+            nodeType = rand.nextInt(1); 
+            parentName = city.getName();
+            if ( nodeType == 0 ) {
+                // randomVal[1] contains all values of childs
+                splitChild = randomVal[1].split(","); 
+        
+                // Generate random index from 0 to largest index
+                // to get the randomised value of child
+                idxChild = rand.nextInt(splitChild.length - 1);
+                childName = splitChild[idxChild];
+                cityNode = new CityComponent( childName, parentName, height );
+            } else {
+                // randomVal[2] contains all values of childs
+                splitChild = randomVal[2].split(","); 
+            
+                // Generate random index from 0 to largest index
+                // to get the randomised value of child
+                idxChild = rand.nextInt(splitChild.length - 1);
+                childName = splitChild[idxChild];
+                cityNode = new CityBuilding( childName, parentName, height );
+            }
+            city.addComponent( cityNode );
+        }
+    }   
 
     /**
     * Read a sets of values from the file

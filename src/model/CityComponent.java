@@ -123,17 +123,6 @@ public class CityComponent extends City
             }
         }
         return str;
-
-        /*
-        String str = "";
-        for ( City city : networks ) {
-            if ( city instanceof CityBuilding )
-                str += city.toFileString() + "\n";
-            else
-                str += name + "," + parentName + "\n";
-        }
-        return str;
-        */
     }
 
     /**
