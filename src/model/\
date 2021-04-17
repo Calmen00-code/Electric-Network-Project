@@ -92,6 +92,7 @@ public class CityComponent extends City
                 str += getSpace(cityNd) + cityNd.getName() + "\n";
                 storeStack( cityNd.getCity(), cityStack );
             }
+            System.out.println(cityNd.getName());
         }
         return str;
     }

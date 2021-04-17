@@ -37,6 +37,7 @@ public class CityBuilding extends City
     public String toString()
     {
         String str = "";
+        str += name + "," + parentName + ",";
         for ( Map.Entry<String, Double> consumption : powConsumption.entrySet() )
             str += consumption.getKey() + "=" + consumption.getValue();
         return str;
