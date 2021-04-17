@@ -101,6 +101,27 @@ public class FileGenerator implements TreeGenerator
         return city;
     }
 
+    public String readFile( String filename ) throws ModelException
+    {
+        String context = "";
+        try
+        {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line = "";
+
+            line = reader.readLine();
+            context += line + "\n";
+            while ( line != null ) {
+                line = reader.readLine();
+                if ( line != null ) context += line + "\n";
+            }
+            reader.close();
+        } catch (IOException e) {
+            throw new ModelException("Error while reading the file: " + e.getMessage());
+        }
+        return context;
+    }
+
     private boolean isLeaf ( String str )
     {
         boolean leaf = false;
