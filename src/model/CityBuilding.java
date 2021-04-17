@@ -1,5 +1,6 @@
 /**
 * Class to handle the leaf node of the composite pattern in City
+* Represents the leaf node in the network tree     
 * @extends City
 * @author Calmen Chia
 */
@@ -35,6 +36,16 @@ public class CityBuilding extends City
 
     @Override
     public String toString()
+    {
+        String str = "";
+        str += name + "," + parentName + ",";
+        for ( Map.Entry<String, Double> consumption : powConsumption.entrySet() )
+            str += consumption.getKey() + "=" + consumption.getValue();
+        return str;
+    }
+
+    @Override
+    public String toFileString()
     {
         String str = "";
         str += name + "," + parentName + ",";

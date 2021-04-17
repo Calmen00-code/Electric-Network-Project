@@ -19,5 +19,6 @@ public abstract class City
     public void addComponent(City city) { }
     public void addConsumption(String s, double val) { }
     public String toString() { return ""; }
+    public String toFileString() { return ""; }
     public int getHeight() { return 0; }
 }

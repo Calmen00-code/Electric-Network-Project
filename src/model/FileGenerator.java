@@ -47,6 +47,8 @@ public class FileGenerator implements TreeGenerator
             while ( line != null ) {
                 splitLine = line.split(",");
 
+                // Lines contain only a single non-root name but without the name of its parent 
+                // CORRECT EXAMPLE: non-root,parent
                 if ( splitLine.length <= 1 )
                     throw new ModelException("Missing parent node for a non-root node\n");
 
