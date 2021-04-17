@@ -70,9 +70,11 @@ public class ElectricNetworkDemo
                             {
                                 if ( splitArg.length > 4 )
                                     throw new ControllerException("Maximum mode selected has reached!\n");
-                                writeFile.print( city, splitArg[3] );
-                                // TODO: Write to file mode
-                                //       for read from a file tree
+
+                                // Since error handling are already done in model, the context can be assured correct
+                                // Therefore, context can be read and write directly
+                                String context = generator.readFile(splitArg[1]);
+                                writeFile.print( context, splitArg[3] );
                             }
                             else
                                 throw new ControllerException(
@@ -101,9 +103,18 @@ public class ElectricNetworkDemo
         }
         else if ( splitArg[0].equals("-g") )
         {
+            generator = new RandomGenerator(); 
             if ( splitArg[1].equals("-d") ) {   // Output to the screen
                 if ( splitArg.length > 2 )
                     throw new ControllerException("Maximum mode selected has reached!\n");
+                try
+                {
+                    city = generator.generateTree( "resources/random.txt" );
+                    for (City cityNd : city.getCity())
+                        System.out.println(cityNd.getName());
+                } catch(ModelException e) {
+                    printMsg.print(null, e.getMessage());
+                }
                 // TODO: Write to screen mode for 
                 //       random generated tree
             }
