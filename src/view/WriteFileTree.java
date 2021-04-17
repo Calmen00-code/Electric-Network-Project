@@ -23,10 +23,9 @@ public class WriteFileTree implements Output
         {
             fos = new FileOutputStream(filename);
             pw = new PrintWriter(fos);
-            City city = (City)obj;
+            String context = (String)obj;
 
-            pw.println(city.getName());
-            pw.print(city.toString());
+            pw.print(context);
 
             pw.close();
         }

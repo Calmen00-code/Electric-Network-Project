@@ -19,6 +19,8 @@ public class ScreenDisplayTree implements Output
         City city = (City)obj; 
 
         System.out.println(city.getName());
-        System.out.print(city.toString());
+        System.out.println(city.toString());
+
     }
+
 } 
