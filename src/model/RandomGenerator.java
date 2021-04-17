@@ -10,9 +10,33 @@ import java.util.*;
 
 public class RandomGenerator implements TreeGenerator
 {
+    public static final int MIN_HEIGHT = 1;
+    public static final int MAX_HEIGHT = 5;
+    public static final int MIN_NODE = 2;
+    public static final int MAX_NODE = 5;
+
     @Override 
-    public City generateTree( String s ) throws ModelException;
+    public City generateTree( String filename ) throws ModelException;
     {
+        Random rand = new Random();
+        String[] randomVal = readFile( filename );
+        String[] value = null;
+        int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
+
+        System.out.println("Depth Randomised: " + depth);
+
+        // Creating the root node
+        String[] splitRoot = randomVal[0].split(",");
+        int idxRoot = rand.nextInt(splitRoot.length - 1);
+        String rootName = splitRoot[idxRoot];
+        City city = new CityComponent( rootName, "", 0 );
+
+        // Creating Subsequent non-root node and leaf node
+        int numChild;
+        for ( int i = 1; i < depth; ++i ) {
+            numChild = rand.next(MAX_NODE - MIN_NODE) + MIN_NODE;
+            createChild( city, numChild );
+        }
     }
 
     /**
