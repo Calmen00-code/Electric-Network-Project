@@ -23,12 +23,10 @@ public class WriteFileTree implements Output
         {
             fos = new FileOutputStream(filename);
             pw = new PrintWriter(fos);
-            
             City city = (City)obj;
-            List <City> cityNetwork = city.getCity();
 
-            for ( City cityNode: cityNetwork )
-                pw.print(cityNode.toString());
+            pw.println(city.getName());
+            pw.print(city.toString());
 
             pw.close();
         }
