@@ -21,6 +21,7 @@ public class FileGenerator implements TreeGenerator
     public City generateTree( String filename ) throws ModelException
     {
         City city = null;
+        int height = 0;
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -34,7 +35,7 @@ public class FileGenerator implements TreeGenerator
                 if ( line.contains(",") )
                     throw new ModelException("Root should not contain any element else!\n");
                 else {
-                    city = new CityComponent( line, "" );    // Creating root
+                    city = new CityComponent( line, "", height );    // Creating root
                     city.addComponent( city );
                 }
 
@@ -52,8 +53,9 @@ public class FileGenerator implements TreeGenerator
                 // Check if line contains abbreviation
                 if ( isLeaf( line ) ) { 
                     //System.out.println("ENTERED IS-LEAF ->" + line +"\n");
-                    cityNode = new CityBuilding( splitLine[0], splitLine[1] );
                     parent = city.find( splitLine[1] );
+                    height = parent.getHeight() + 1;
+                    cityNode = new CityBuilding( splitLine[0], splitLine[1], height );
 
                     if ( parent == null )
                         throw new ModelException("Parent of this City building does not exist in the network\n");
@@ -76,8 +78,9 @@ public class FileGenerator implements TreeGenerator
                     if ( splitLine.length > 2 )
                         throw new ModelException("A child component can only have one parent component!\n");
                     else {
-                        cityNode = new CityComponent( splitLine[0], splitLine[1] );
                         parent = city.find( splitLine[1] );
+                        height = parent.getHeight() + 1;
+                        cityNode = new CityComponent( splitLine[0], splitLine[1], height );
 
                         if ( parent == null )
                             throw new ModelException("Parent of this City component does not exist in the network\n");

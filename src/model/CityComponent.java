@@ -16,12 +16,14 @@ public class CityComponent extends City
 {
     private String name;
     private String parentName;
+    private int height;
     private List<City> networks = new ArrayList<City>();
 
-    public CityComponent( String inName, String inParentName )
+    public CityComponent( String inName, String inParentName, int inHeight )
     {
         this.name = inName;
         this.parentName = inParentName;
+        this.height = inHeight;
     }
 
     /**
@@ -86,11 +88,17 @@ public class CityComponent extends City
                 if ( isBuilding( city ) )
                     str += city.toString() + "\n";
                 else
-                    str += city.getName() + "," + city.getParentName() + "\n";
+                    str += city.getName() + "\n";
             }
         }
         return str;
     }
+
+    @Override
+    public int getHeight()
+    {
+        return height;
+    } 
 
     public boolean hasValue ( String searchValue )
     {
