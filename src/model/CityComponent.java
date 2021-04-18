@@ -132,9 +132,8 @@ public class CityComponent extends City
     {
         // Store city starting from the last element as Stack is LIFO
         // Therefore to maintain the sequence, store starting from the last element of network
-        for ( int i = inNetworks.size() - 1; i >= 0; --i ) {
+        for ( int i = inNetworks.size() - 1; i >= 0; --i )
             stack.push(inNetworks.get(i));
-        }
     }
    
     @Override

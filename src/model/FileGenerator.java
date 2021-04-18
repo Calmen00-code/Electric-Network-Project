@@ -101,6 +101,7 @@ public class FileGenerator implements TreeGenerator
         return city;
     }
 
+    @Override
     public String readFile( String filename ) throws ModelException
     {
         String context = "";
@@ -130,5 +131,11 @@ public class FileGenerator implements TreeGenerator
             leaf = true;
 
         return leaf;
+    }
+
+    @Override
+    public String[] readFileRandom( String s ) throws ModelException
+    {
+        return null;
     }
 }
