@@ -110,13 +110,10 @@ public class ElectricNetworkDemo
                 try
                 {
                     city = generator.generateTree( "resources/random.txt" );
-                    for (City cityNd : city.getCity())
-                        System.out.println(cityNd.getName());
+                    screen.print(city, "");
                 } catch(ModelException e) {
                     printMsg.print(null, e.getMessage());
                 }
-                // TODO: Write to screen mode for 
-                //       random generated tree
             }
             else if ( splitArg[1].equals("-w") ) {
                 try
