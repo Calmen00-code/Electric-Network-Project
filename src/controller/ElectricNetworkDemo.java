@@ -45,6 +45,7 @@ public class ElectricNetworkDemo
         WriteFileTree writeFile = new WriteFileTree();
         City city = null;
         String[] context;
+        String str = "";
 
         if ( splitArg[0].equals("-r") )
         {
@@ -76,7 +77,8 @@ public class ElectricNetworkDemo
                                 // Therefore, context can be read and write directly
                                 context = generator.readFile(splitArg[1]);
                                 for ( int i = 0; i < context.length; ++i )
-                                    writeFile.println( context[i], splitArg[3] );
+                                    str += context[i];
+                                writeFile.print( str, splitArg[3] );
                             }
                             else
                                 throw new ControllerException(
@@ -126,7 +128,7 @@ public class ElectricNetworkDemo
                         // TODO: Write to file mode for 
                         //       random generated tree
                         city = generator.generateTree( "resources/random.txt" );
-                        String str = city.toFileString();
+                        str = city.toFileString();
                         writeFile.print( str, splitArg[2] );
                     }
                     else

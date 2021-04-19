@@ -1,0 +1,5 @@
+Malaysia,
+multi-storey,Malaysia,ee=162.81,de=264.26,s=889.54,em=725.97,h=628.74,dm=748.12,ea=97.78,da=221.48,
+industrial,Malaysia,ee=759.05,de=834.65,s=183.23,em=123.73,h=190.61,dm=32.69,ea=202.88,da=881.62,
+westcoast,Malaysia
+industrial,Malaysia,ee=374.71,de=561.91,s=260.42,em=930.24,h=404.68,dm=352.29,ea=137.88,da=138.61,

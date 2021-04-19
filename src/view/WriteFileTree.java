@@ -15,7 +15,7 @@ public class WriteFileTree implements Output
     public WriteFileTree() { }
 
     @Override
-    public void print ( Object obj, String filename )
+    public void print ( Object context, String filename )
     {
         FileOutputStream fos = null;
         PrintWriter pw;
@@ -23,9 +23,8 @@ public class WriteFileTree implements Output
         {
             fos = new FileOutputStream(filename);
             pw = new PrintWriter(fos);
-            String context = (String)obj;
-
-            pw.print(context);
+            String str = (String)context;
+            pw.println(context);
 
             pw.close();
         }
@@ -35,7 +34,7 @@ public class WriteFileTree implements Output
                 try { fos.close(); }
                 catch(IOException ex2) { }
             }
-            System.out.println("Error while reading file: " + e.getMessage());
+            System.out.println("Error while writing file: " + e.getMessage());
         }
     }
 }

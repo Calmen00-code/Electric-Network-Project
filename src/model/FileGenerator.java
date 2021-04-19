@@ -102,19 +102,19 @@ public class FileGenerator implements TreeGenerator
     }
 
     @Override
-    public String readFile( String filename ) throws ModelException
+    public String[] readFile( String filename ) throws ModelException
     {
-        String context = "";
+        String[] context = null;
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line = "";
+            int i = 0;
 
             line = reader.readLine();
-            context += line + "\n";
             while ( line != null ) {
+                context[i] = line;
                 line = reader.readLine();
-                if ( line != null ) context += line + "\n";
             }
             reader.close();
         } catch (IOException e) {
@@ -131,11 +131,5 @@ public class FileGenerator implements TreeGenerator
             leaf = true;
 
         return leaf;
-    }
-
-    @Override
-    public String[] readFileRandom( String s ) throws ModelException
-    {
-        return null;
     }
 }

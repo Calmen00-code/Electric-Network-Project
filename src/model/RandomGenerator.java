@@ -28,7 +28,7 @@ public class RandomGenerator implements TreeGenerator
         HashMap <String,String> randomValues = new HashMap<String,String>();    
         String[] value = null;
 
-        String[] randomVal = readFileRandom( filename );
+        String[] randomVal = readFile( filename );
         int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
         System.out.println("Depth Randomised: " + depth);   // FIXME: Print should not be in model
 
@@ -189,7 +189,8 @@ public class RandomGenerator implements TreeGenerator
     * Read a sets of values from the file
     * @export randomValues to be generated in generateTree
     */
-    public String[] readFileRandom( String filename ) throws ModelException
+    @Override
+    public String[] readFile( String filename ) throws ModelException
     {
         // [0] = root values, [1] = non-root values, [2] = leaf values
         String[] randomValues = new String[3];
@@ -210,11 +211,5 @@ public class RandomGenerator implements TreeGenerator
             throw new ModelException("Error while reading file: " + e.getMessage());
         }
         return randomValues;
-    }
-
-    @Override
-    public String readFile(String s)
-    {
-        return "";
     }
 }
