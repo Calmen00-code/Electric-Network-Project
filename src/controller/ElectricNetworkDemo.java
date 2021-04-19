@@ -44,6 +44,7 @@ public class ElectricNetworkDemo
         ScreenDisplayTree screen = new ScreenDisplayTree();
         WriteFileTree writeFile = new WriteFileTree();
         City city = null;
+        String[] context;
 
         if ( splitArg[0].equals("-r") )
         {
@@ -73,8 +74,9 @@ public class ElectricNetworkDemo
 
                                 // Since error handling are already done in model, the context can be assured correct
                                 // Therefore, context can be read and write directly
-                                String context = generator.readFile(splitArg[1]);
-                                writeFile.print( context, splitArg[3] );
+                                context = generator.readFile(splitArg[1]);
+                                for ( int i = 0; i < context.length; ++i )
+                                    writeFile.println( context[i], splitArg[3] );
                             }
                             else
                                 throw new ControllerException(
@@ -123,6 +125,9 @@ public class ElectricNetworkDemo
                             throw new ControllerException("Maximum mode selected has reached!\n");
                         // TODO: Write to file mode for 
                         //       random generated tree
+                        city = generator.generateTree( "resources/random.txt" );
+                        String str = city.toFileString();
+                        writeFile.print( str, splitArg[2] );
                     }
                     else
                         throw new ControllerException(
@@ -130,7 +135,9 @@ public class ElectricNetworkDemo
                 }
                 catch(ArrayIndexOutOfBoundsException e) {
                     throw new ControllerException(
-                        "Unrecognised Output Mode (Expected: -d (Print to screen) or -w (Write to file)\n");
+                        "Write to a file mode was selected but no file was provided\n");
+                } catch(ModelException e) {
+                    printMsg.print(null, e.getMessage());
                 }
             }
             else
