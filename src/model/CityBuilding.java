@@ -8,6 +8,7 @@
 package Assignment1.model;
 
 import java.util.*;
+import java.text.*;
 
 public class CityBuilding extends City
 {
@@ -25,7 +26,9 @@ public class CityBuilding extends City
 
     public void addConsumption( String type, double value )
     {
-        powConsumption.put(type, value);
+        DecimalFormat df = new DecimalFormat("0.00");
+        String valueStr = df.format(value);
+        powConsumption.put(type, Double.parseDouble(valueStr));
     }
 
     @Override
@@ -40,7 +43,7 @@ public class CityBuilding extends City
         String str = "";
         str += name + "," + parentName + ",";
         for ( Map.Entry<String, Double> consumption : powConsumption.entrySet() )
-            str += consumption.getKey() + "=" + consumption.getValue();
+            str += consumption.getKey() + "=" + consumption.getValue() + ",";
         return str;
     }
 
@@ -50,7 +53,7 @@ public class CityBuilding extends City
         String str = "";
         str += name + "," + parentName + ",";
         for ( Map.Entry<String, Double> consumption : powConsumption.entrySet() )
-            str += consumption.getKey() + "=" + consumption.getValue();
+            str += consumption.getKey() + "=" + consumption.getValue() + ",";
         return str;
     }
 

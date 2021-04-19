@@ -103,24 +103,13 @@ public class CityComponent extends City
     @Override
     public String toFileString()
     {
-        Stack<City> cityStack = new Stack<City>();
         String str = "";
-        City cityNd;
 
-        storeStack( networks, cityStack );
-        cityStack.pop();
-
-        while ( !cityStack.isEmpty() ) {
-            cityNd = cityStack.pop();
-
-            // Building is the leaf hence no more children nodes
-            // Therefore there is nothing to store in the stack
-            if ( cityNd instanceof CityBuilding )
-                str += cityNd.toFileString() + "\n";
-            else {
-                str += cityNd.getName() + "\n";
-                storeStack( cityNd.getCity(), cityStack );
-            }
+        for ( City city : networks ) {
+            if ( city instanceof CityBuilding )
+                str += city.toFileString() + "\n";
+            else
+                str += city.getName() + "," + city.getParentName() + "\n";
         }
         return str;
     }

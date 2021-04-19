@@ -15,18 +15,22 @@ public class RandomGenerator implements TreeGenerator
     public static final int MAX_HEIGHT = 5;
     public static final int MIN_NODE = 2;
     public static final int MAX_NODE = 5;
+    public static final int MIN_POWER = 0;
+    public static final int MAX_POWER = 1000;
+    private Random rand = new Random();
 
     @Override 
     public City generateTree( String filename ) throws ModelException
     {
-        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
         Queue <City> queue = new LinkedList<City>();
-        String[] randomVal = readFileRandom( filename );
+        // HashMap is used to keep track if there is any repeating values 
+        HashMap <String,String> randomValues = new HashMap<String,String>();    
         String[] value = null;
-        int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
 
-        // FIXME display should not be done in model
-        System.out.println("Depth Randomised: " + depth + "\n");
+        String[] randomVal = readFileRandom( filename );
+        int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
+        System.out.println("Depth Randomised: " + depth);   // FIXME: Print should not be in model
 
         // Creating the root node
         String[] splitRoot = randomVal[0].split(",");
@@ -45,7 +49,6 @@ public class RandomGenerator implements TreeGenerator
             if ( i == 1 ) {
                 createChild( currNd, numChild, randomVal, i );
                 storeQueue( currNd.getCity(), queue );
-                //displayQueue( queue );  // FIXME Displaying queue for createChild debug
             }
             else {
                 // Create childrens for all nodes in current height
@@ -56,17 +59,43 @@ public class RandomGenerator implements TreeGenerator
                     if ( currNd instanceof CityComponent ) {
                         createChild( currNd, numChild, randomVal, i );
                         storeQueue( currNd.getCity(), queue );
-                    }
+                    } 
+                    /*
+                    else // Generate for randomised composition instead
+                    {
+                        System.out.print("GENERATED...");
+                        generateRandomComposition( currNd );
+                    }*/
                 }
             }
         }
         return city;
     }
 
+    public void displayHashMap( HashMap<String,String> maps )
+    {
+        for ( Map.Entry<String, String> mapEntry : maps.entrySet() )
+            System.out.println(mapEntry.getKey() + ", " + mapEntry.getValue());
+    }
+
     public void displayQueue ( Queue <City> queue )
     {
         for ( City city : queue )
             System.out.println(city.getName());
+    }
+
+    /**
+    * Store element in the string array into the hash map
+    * The hashmap is used to keep track the repeating values in the string array
+    */
+    public void storeHashMap( String[] randomVal, HashMap <String,String> randomValues )
+    {
+        String[] splitRandom;
+        for ( int i = 0; i < randomVal.length; ++i ) {
+            splitRandom = randomVal[i].split(",");
+            for ( int j = 0; j < splitRandom.length; ++j )
+                randomValues.put(splitRandom[j], splitRandom[j]);
+        }
     }
 
     /**
@@ -81,9 +110,9 @@ public class RandomGenerator implements TreeGenerator
         }
     }
 
-    public void createChild( City city, int numChild, String[] randomVal, int height )
+    public void createChild( City city, int numChild, 
+                             String[] randomVal, int height )
     {
-        Random rand = new Random();
         String[] splitChild = null;
         String parentName, childName;
         City cityNode;
@@ -92,16 +121,18 @@ public class RandomGenerator implements TreeGenerator
 
         for ( int i = 0; i < numChild; ++i ) {
             // Create Non-Leaf (nodeType = 0), Create Leaf (nodeType = 1)
-            nodeType = rand.nextInt(1); 
+            nodeType = rand.nextInt(2); 
             parentName = city.getName();
             if ( nodeType == 0 ) {
                 // randomVal[1] contains all values of childs
                 splitChild = randomVal[1].split(","); 
-        
+
                 // Generate random index from 0 to largest index
                 // to get the randomised value of child
                 idxChild = rand.nextInt(splitChild.length - 1);
                 childName = splitChild[idxChild];
+
+                // Returned childName is always unique
                 cityNode = new CityComponent( childName, parentName, height + 1 );
             } else {
                 // randomVal[2] contains all values of childs
@@ -111,11 +142,48 @@ public class RandomGenerator implements TreeGenerator
                 // to get the randomised value of child
                 idxChild = rand.nextInt(splitChild.length - 1);
                 childName = splitChild[idxChild];
+
+                // Returned childName is always unique
                 cityNode = new CityBuilding( childName, parentName, height + 1 );
+                generateRandomComposition( cityNode );
             }
             city.addComponent( cityNode );
         }
     } 
+
+    public String generateRandomChild( String[] splitChild, HashMap<String,String> randomValues )
+    {
+        int idxChild;
+        String childName = "";
+
+        // Generate random index from 0 to largest index
+        // to get the randomised value of child
+        idxChild = rand.nextInt(splitChild.length - 1);
+        childName = splitChild[idxChild];
+        displayHashMap( randomValues );
+
+        // Repeat to generate randomly until a hash map has the value
+        while ( !randomValues.containsKey(childName) && !randomValues.isEmpty() ) {
+            idxChild = rand.nextInt(splitChild.length - 1);
+            childName = splitChild[idxChild];
+            // System.out.println(childName);
+        }
+        // Remove the key from hash map so that other component wont use it 
+        randomValues.remove(childName);     
+        return childName;
+    }
+
+    public void generateRandomComposition( City building )
+    {
+        String[] consumptionType = { "dm", "da", "de", "em", 
+                                     "ea", "ee", "h", "s" };
+        double randomPower = 0.0;
+
+        for ( int i = 0; i < consumptionType.length; ++i ) {
+            randomPower = (Math.random() * ((MAX_POWER - MIN_POWER) + 1)) + MIN_POWER; 
+            building.addConsumption( consumptionType[i], randomPower );
+        }
+    }
 
     /**
     * Read a sets of values from the file
