@@ -116,7 +116,7 @@ public class CityComponent extends City
     /**
     * Store element node in networks to Stack
     */
-    public void storeStack( List <City> inNetworks, Stack <City> stack )
+    private void storeStack( List <City> inNetworks, Stack <City> stack )
     {
         // Store city starting from the last element as Stack is LIFO
         // Therefore to maintain the sequence, store starting from the last element of network
@@ -130,7 +130,7 @@ public class CityComponent extends City
         return height;
     } 
 
-    public boolean hasValue ( String searchValue )
+    private boolean hasValue ( String searchValue )
     {
         Iterator networkIte = networks.iterator();
         City city = null;

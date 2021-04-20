@@ -27,9 +27,12 @@ public class RandomGenerator implements TreeGenerator
         Queue <City> queue = new LinkedList<City>();
         // HashMap is used to keep track if there is any repeating values 
         HashMap <String,String> randomValues = new HashMap<String,String>();    
-        String[] value = null;
+        // col=25 as that is the longest possible outcome 
+        // max. depth = 5, max. child = 5, therefore 5x5 = 25
+        int[][] recordVal = new int[3][25];     
 
         String[] randomVal = readFile( filename );
+        initialiseRecordVal( recordVal );
         depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
 
         // Creating the root node
@@ -162,6 +165,17 @@ public class RandomGenerator implements TreeGenerator
         for ( int i = 0; i < consumptionType.length; ++i ) {
             randomPower = (Math.random() * ((MAX_POWER - MIN_POWER) + 1)) + MIN_POWER; 
             building.addConsumption( consumptionType[i], randomPower );
+        }
+    }
+
+    /**
+    * Initialise all the contents of recordVal to 1 (Unused)
+    */
+    private void initialiseRecordVal( int[][] recordVal )
+    {
+        for ( int i = 0; i < recordVal.length; ++i ) {
+            for ( int j = 0; j < recordVal[i].length; ++j )
+                recordVal[i][j] = 1; 
         }
     }
 
