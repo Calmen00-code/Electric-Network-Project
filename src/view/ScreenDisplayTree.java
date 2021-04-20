@@ -20,7 +20,5 @@ public class ScreenDisplayTree implements Output
 
         System.out.println(city.getName());
         System.out.println(city.toString());
-
     }
-
 } 
