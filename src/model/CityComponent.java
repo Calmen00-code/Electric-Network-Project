@@ -83,7 +83,7 @@ public class CityComponent extends City
         City cityNd;
 
         storeStack( networks, cityStack );
-        cityStack.pop();
+        cityStack.pop();    // Root is not needed as it had been displayed
 
         while ( !cityStack.isEmpty() ) {
             cityNd = cityStack.pop();

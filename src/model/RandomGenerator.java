@@ -18,6 +18,7 @@ public class RandomGenerator implements TreeGenerator
     public static final int MIN_POWER = 0;
     public static final int MAX_POWER = 1000;
     private Random rand = new Random();
+    private int depth = 0;
 
     @Override 
     public City generateTree( String filename ) throws ModelException
@@ -29,8 +30,7 @@ public class RandomGenerator implements TreeGenerator
         String[] value = null;
 
         String[] randomVal = readFile( filename );
-        int depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
-        System.out.println("Depth Randomised: " + depth);   // FIXME: Print should not be in model
+        depth = rand.nextInt(MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
 
         // Creating the root node
         String[] splitRoot = randomVal[0].split(",");
@@ -60,35 +60,17 @@ public class RandomGenerator implements TreeGenerator
                         createChild( currNd, numChild, randomVal, i );
                         storeQueue( currNd.getCity(), queue );
                     } 
-                    /*
-                    else // Generate for randomised composition instead
-                    {
-                        System.out.print("GENERATED...");
-                        generateRandomComposition( currNd );
-                    }*/
                 }
             }
         }
         return city;
     }
 
-    public void displayHashMap( HashMap<String,String> maps )
-    {
-        for ( Map.Entry<String, String> mapEntry : maps.entrySet() )
-            System.out.println(mapEntry.getKey() + ", " + mapEntry.getValue());
-    }
-
-    public void displayQueue ( Queue <City> queue )
-    {
-        for ( City city : queue )
-            System.out.println(city.getName());
-    }
-
     /**
     * Store element in the string array into the hash map
     * The hashmap is used to keep track the repeating values in the string array
     */
-    public void storeHashMap( String[] randomVal, HashMap <String,String> randomValues )
+    private void storeHashMap( String[] randomVal, HashMap <String,String> randomValues )
     {
         String[] splitRandom;
         for ( int i = 0; i < randomVal.length; ++i ) {
@@ -101,7 +83,7 @@ public class RandomGenerator implements TreeGenerator
     /**
     * Store element node in networks to Queue
     */
-    public void storeQueue( List <City> inNetworks, Queue<City> queue )
+    private void storeQueue( List <City> inNetworks, Queue<City> queue )
     {
         for ( int i = 0; i < inNetworks.size(); ++i ) {
             // Root value does not need to be added 
@@ -110,7 +92,7 @@ public class RandomGenerator implements TreeGenerator
         }
     }
 
-    public void createChild( City city, int numChild, 
+    private void createChild( City city, int numChild, 
                              String[] randomVal, int height )
     {
         String[] splitChild = null;
@@ -151,7 +133,7 @@ public class RandomGenerator implements TreeGenerator
         }
     } 
 
-    public String generateRandomChild( String[] splitChild, HashMap<String,String> randomValues )
+    private String generateRandomChild( String[] splitChild, HashMap<String,String> randomValues )
     {
         int idxChild;
         String childName = "";
@@ -160,20 +142,18 @@ public class RandomGenerator implements TreeGenerator
         // to get the randomised value of child
         idxChild = rand.nextInt(splitChild.length - 1);
         childName = splitChild[idxChild];
-        displayHashMap( randomValues );
 
         // Repeat to generate randomly until a hash map has the value
         while ( !randomValues.containsKey(childName) && !randomValues.isEmpty() ) {
             idxChild = rand.nextInt(splitChild.length - 1);
             childName = splitChild[idxChild];
-            // System.out.println(childName);
         }
         // Remove the key from hash map so that other component wont use it 
         randomValues.remove(childName);     
         return childName;
     }
 
-    public void generateRandomComposition( City building )
+    private void generateRandomComposition( City building )
     {
         String[] consumptionType = { "dm", "da", "de", "em", 
                                      "ea", "ee", "h", "s" };
@@ -211,5 +191,14 @@ public class RandomGenerator implements TreeGenerator
             throw new ModelException("Error while reading file: " + e.getMessage());
         }
         return randomValues;
+    }
+
+    @Override
+    public int getDepth() throws ModelException
+    {
+        // Depth should not be 0 after random generation
+        if ( depth == 0 )
+            throw new ModelException("Error while retrieving depth\n");
+        return depth;
     }
 }

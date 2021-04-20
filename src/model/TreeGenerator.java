@@ -10,4 +10,5 @@ public interface TreeGenerator
 {
     public City generateTree( String s ) throws ModelException;
     public String[] readFile( String s ) throws ModelException;
+    public int getDepth() throws ModelException;
 }

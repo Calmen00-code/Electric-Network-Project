@@ -155,4 +155,11 @@ public class FileGenerator implements TreeGenerator
         }
         return num; 
     }
+
+    @Override
+    public int getDepth() throws ModelException
+    {
+        throw new ModelException("This method is not supported in FileGenerator\n");
+        // throw new UnsupportedOperationException("This method is not supported in FileGenerator\n");
+    }
 }
