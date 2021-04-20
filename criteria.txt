@@ -1,0 +1,89 @@
+1. Appropriate use of containers
+
+There are several containers being used throughout this application, which will be listed below.
+
+ArrayList<City>(): This was used to implement the Composite Pattern, as this container will allow to store
+                   the objects of CityComponent, which is the non-leaf node in the network and 
+                   CityBuilding, the leaf node in the network.
+
+Stack<City>(): This container was used in toString(). Stack is used to access each of the node in the 
+               networks in a hierarchical manners due to its Last-In-First-Out.
+
+Queue<City>(): Queue was used in the RandomGenerator class to create a random child as the program 
+               iterates from root to leaf.
+
+HashMap<String,Double>(): This container was used to store the sets of power consumption type with
+                          its value. So that whenever the program would like to get the consumption 
+                          value of a type, it will just need to supply the type.
+
+
+
+2. The application is splitted into three main packages, which are model, view, and controller.
+
+    - model: Handles the logic of the application. Model is responsible to process data and return the 
+             data to the controller. For example, the Generator in the model is responsible to read the
+             file and generate the tree accordingly. Then, it will return the entire tree to the controller.
+
+    - view: Handles the interaction between user and the program. It will display or output the data 
+            being processed by model. For example, after the generator had generated the tree and returned 
+            to controller, the controller will pass the tree to print method in view to output the result
+            either to the screen or to the file.
+
+    - controller: Controls the communication between model and the view. For example, controller will 
+                  interpret the arguments input by user and call FileGenerator if -g was selected and 
+                  call ScreenDisplay's print method if -d was selected.
+
+    All the names of the class found in model, view, and controller represents their specific roles.
+    For example, WriteFileTree class handles in writing the result of the tree to the specified file,
+    RandomGenerator will generate the tree based on randomised value found in a file.
+
+
+
+3. Appropriate error handling
+
+Every possible exceptions caused by user error such as misinput, typos, and invalid arguments in the program
+will be handled in an organised way in the controller. The controller will then call the print method in the 
+view to display the error into the console screen. In this case, the model does not need to worry about the 
+handling the error as it will just handles the logic of the system. Same case goes to the view, it does not
+need to know about the exception or the error being thrown, it will just be responsible in displaying whatever
+message that was passed from the controller. 
+
+
+
+4. Appropriate use of the Strategy Pattern and/or Template Method Pattern
+
+The Strategy Pattern was used for three times in this application. 
+
+Which can be found in,
+
+view: The Output.java interface was implemented by PrintMessage.java, ScreenDisplay.java, and WriteFileTree.java.
+
+model: The City.java interface was implemented by CityBuilding.java,
+       CityComponent.java to implements the Composite Pattern. Where CityComponent represents the non-leaf node,
+       and CityBuilding.java represents the leaf node.
+
+       The TreeGenerator.java interface was implemented by FileGenerator.java and RandomGenerator.java which
+       shares the common methods: generateTree, readFile, getDepth but with different algorithm for each file.
+
+Using the Strategy Pattern in such a way that defined above will enable polymorphism. For example, 
+when -g and -r argument was given, object of RandomGenerator and FileGenerator is created respectively
+but they are both assign into its parent class reference, which is of type TreeGenerator. In this case,
+the program will not need to know the specific type of the subclass (FileGenerator or RandomGenerator). 
+The method generateTree, which was overriden in both FileGenerator and RandomGenerator can be called using 
+the parent object to perform different operation in FileGenerator or RandomGenerator.
+
+
+5. Appropriate use of the Composite Pattern
+
+By using Composite Pattern, we can create a hierachy of objects. For example, the network of the electricity 
+tree will start from the root, which is the city. The city then can have different district, which is the 
+non-leaf node. A non-leaf node could contain a leaf or another non-leaf node, which is the same as the root city.
+The network will stops when it reaches the leaf node, which is the CityBuilding instance. Therefore, we could
+represents the entire electricity networks with composite pattern because it shows a hierachy of objects 
+CityComponent, which is the non-leaf node and also the objects for CityBuilding, which is the leaf node.
+
+
+
+6. Clear and correct UML
+
+The UML will be provided in a form of Image in this same Assignment folder.

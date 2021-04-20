@@ -1,20 +1,12 @@
-Italy    southside
-      northeastside
-        northwestside
-        institutional,northeastside,ee=731.02,de=899.23,s=845.82,em=222.42,h=320.37,dm=86.39,ea=125.31,da=643.74,
-        special,northeastside,ee=613.46,de=384.74,s=856.84,em=45.58,h=756.93,dm=457.47,ea=91.25,da=455.73,
-      industrial,southside,ee=384.48,de=888.16,s=145.82,em=517.31,h=53.48,dm=581.79,ea=291.7,da=97.12,
-      westside
-        mercantile,westside,ee=491.79,de=903.58,s=843.0,em=759.91,h=454.53,dm=476.22,ea=522.1,da=121.29,
-        multi-storey,westside,ee=345.8,de=5.88,s=964.29,em=463.31,h=325.57,dm=63.24,ea=82.33,da=57.51,
-        educational,westside,ee=645.28,de=535.13,s=591.29,em=552.13,h=737.68,dm=364.34,ea=382.51,da=653.89,
-      residential,southside,ee=900.99,de=647.8,s=819.29,em=243.97,h=76.89,dm=830.85,ea=707.64,da=538.4,
-    eastcoast
-      residential,eastcoast,ee=956.12,de=776.73,s=942.83,em=554.89,h=913.96,dm=483.75,ea=79.6,da=323.91,
-      residential,eastcoast,ee=579.87,de=610.89,s=356.75,em=984.08,h=1000.21,dm=351.31,ea=778.06,da=425.92,
-      eastside
-        southside
-        hazardous,eastside,ee=89.78,de=721.28,s=127.07,em=184.39,h=835.31,dm=116.61,ea=194.74,da=517.09,
-        center
-      detached,eastcoast,ee=101.3,de=239.51,s=477.08,em=200.11,h=704.4,dm=646.5,ea=421.33,da=263.13,
+Bolivia
+    special,Bolivia,ee=186.92,de=116.19,s=779.43,em=539.69,h=89.6,dm=130.9,ea=202.84,da=639.38,
+    hazardous,Bolivia,ee=703.91,de=397.55,s=695.27,em=289.1,h=786.25,dm=399.13,ea=970.54,da=849.38,
+    institutional,Bolivia,ee=165.11,de=909.08,s=47.81,em=889.84,h=582.84,dm=967.53,ea=406.57,da=565.57,
+    westcoast
+      southeastside
+        eastcoast
+        westcoast
+        special,southeastside,ee=231.21,de=726.66,s=633.61,em=529.65,h=932.02,dm=145.89,ea=695.12,da=877.94,
+        mixed,southeastside,ee=10.04,de=132.1,s=376.17,em=289.96,h=440.73,dm=407.14,ea=176.72,da=713.01,
+      unsafe,westcoast,ee=948.71,de=663.34,s=282.9,em=315.08,h=687.97,dm=737.76,ea=851.83,da=692.15,
 

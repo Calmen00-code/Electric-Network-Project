@@ -17,6 +17,8 @@ public class RandomGenerator implements TreeGenerator
     public static final int MAX_NODE = 5;
     public static final int MIN_POWER = 0;
     public static final int MAX_POWER = 1000;
+    public static final int AVAILABLE = 1;
+    public static final int UNAVAILABLE = -1;
     private Random rand = new Random();
     private int depth = 0;
 
@@ -50,7 +52,7 @@ public class RandomGenerator implements TreeGenerator
             numChild = rand.nextInt(MAX_NODE - MIN_NODE) + MIN_NODE;
 
             if ( i == 1 ) {
-                createChild( currNd, numChild, randomVal, i );
+                createChild( currNd, numChild, randomVal, i, recordVal );
                 storeQueue( currNd.getCity(), queue );
             }
             else {
@@ -60,27 +62,13 @@ public class RandomGenerator implements TreeGenerator
 
                     // Does not need to create child if currNd is leaf (CityBuilding)
                     if ( currNd instanceof CityComponent ) {
-                        createChild( currNd, numChild, randomVal, i );
+                        createChild( currNd, numChild, randomVal, i, recordVal );
                         storeQueue( currNd.getCity(), queue );
                     } 
                 }
             }
         }
         return city;
-    }
-
-    /**
-    * Store element in the string array into the hash map
-    * The hashmap is used to keep track the repeating values in the string array
-    */
-    private void storeHashMap( String[] randomVal, HashMap <String,String> randomValues )
-    {
-        String[] splitRandom;
-        for ( int i = 0; i < randomVal.length; ++i ) {
-            splitRandom = randomVal[i].split(",");
-            for ( int j = 0; j < splitRandom.length; ++j )
-                randomValues.put(splitRandom[j], splitRandom[j]);
-        }
     }
 
     /**
@@ -95,8 +83,8 @@ public class RandomGenerator implements TreeGenerator
         }
     }
 
-    private void createChild( City city, int numChild, 
-                             String[] randomVal, int height )
+    private void createChild( City city, int numChild, String[] randomVal, 
+                              int height, int[][] recordVal ) throws ModelException
     {
         String[] splitChild = null;
         String parentName, childName;
@@ -112,10 +100,7 @@ public class RandomGenerator implements TreeGenerator
                 // randomVal[1] contains all values of childs
                 splitChild = randomVal[1].split(","); 
 
-                // Generate random index from 0 to largest index
-                // to get the randomised value of child
-                idxChild = rand.nextInt(splitChild.length - 1);
-                childName = splitChild[idxChild];
+                childName = generateRandomChild( splitChild, recordVal[1] );
 
                 // Returned childName is always unique
                 cityNode = new CityComponent( childName, parentName, height + 1 );
@@ -123,10 +108,7 @@ public class RandomGenerator implements TreeGenerator
                 // randomVal[2] contains all values of childs
                 splitChild = randomVal[2].split(","); 
             
-                // Generate random index from 0 to largest index
-                // to get the randomised value of child
-                idxChild = rand.nextInt(splitChild.length - 1);
-                childName = splitChild[idxChild];
+                childName = generateRandomChild( splitChild, recordVal[2] );
 
                 // Returned childName is always unique
                 cityNode = new CityBuilding( childName, parentName, height + 1 );
@@ -136,24 +118,44 @@ public class RandomGenerator implements TreeGenerator
         }
     } 
 
-    private String generateRandomChild( String[] splitChild, HashMap<String,String> randomValues )
+    /**
+    * @export Return the childName that was never been used 
+    */
+    private String generateRandomChild( String[] splitChild, int[] record ) throws ModelException
     {
         int idxChild;
         String childName = "";
 
-        // Generate random index from 0 to largest index
-        // to get the randomised value of child
-        idxChild = rand.nextInt(splitChild.length - 1);
-        childName = splitChild[idxChild];
-
-        // Repeat to generate randomly until a hash map has the value
-        while ( !randomValues.containsKey(childName) && !randomValues.isEmpty() ) {
+        if ( !isRecordFull(record) ) {
+            // Generate random index from 0 to largest index
+            // to get the randomised value of child
             idxChild = rand.nextInt(splitChild.length - 1);
             childName = splitChild[idxChild];
-        }
-        // Remove the key from hash map so that other component wont use it 
-        randomValues.remove(childName);     
+
+            // Repeat to generate randomly until record has an available index
+            while ( record[idxChild] != AVAILABLE ) {
+                idxChild = rand.nextInt(splitChild.length - 1);
+                childName = splitChild[idxChild];
+            }
+            // Remove the item from the record so that other component wont use it 
+            record[idxChild] = UNAVAILABLE;
+        } 
+        else 
+            throw new ModelException("Not enough random value\n");
         return childName;
+    }
+
+    private boolean isRecordFull( int[] record )
+    {
+        int i = 0;
+        boolean full = true;
+
+        // ASSERTION: full becomes false when record[i] = AVAILABLE
+        while ( i < record.length && full ) {
+            full = record[i] != AVAILABLE;
+            ++i;
+        }
+        return full;
     }
 
     private void generateRandomComposition( City building )
@@ -175,7 +177,7 @@ public class RandomGenerator implements TreeGenerator
     {
         for ( int i = 0; i < recordVal.length; ++i ) {
             for ( int j = 0; j < recordVal[i].length; ++j )
-                recordVal[i][j] = 1; 
+                recordVal[i][j] = AVAILABLE; 
         }
     }
 

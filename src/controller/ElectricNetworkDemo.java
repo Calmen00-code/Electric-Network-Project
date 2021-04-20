@@ -114,6 +114,7 @@ public class ElectricNetworkDemo
                 try
                 {
                     city = generator.generateTree( "resources/random.txt" );
+                    printMsg.print(null, "Randomised Depth: " + generator.getDepth() + "\n");
                     screen.print(city, "");
                 } catch(ModelException e) {
                     printMsg.print(null, e.getMessage());
@@ -126,6 +127,7 @@ public class ElectricNetworkDemo
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
                         city = generator.generateTree( "resources/random.txt" );
+                        printMsg.print(null, "Randomised Depth: " + generator.getDepth() + "\n");
                         str += city.getName() + "\n";
                         str += city.toString();
                         writeFile.print( str, splitArg[2] );

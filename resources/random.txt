@@ -1,3 +1,3 @@
 Malaysia,England,Singapore,Australia,Italy,China,Indonesia,Thailand,Bolivia,USA,
-southside,northside,westside,eastside,center,northwestside,northeastside,southwestside,southeastside,westcoast,eastcoast,inland,
-residential,educational,institutional,assembly,business,mercantile,industrial,storage,wholesale,mixed,hazardous,detached,semi-detached,multi-storey,slums,unsafe,special,carpark,
+southside,northside,westside,eastside,center,northwestside,northeastside,southwestside,southeastside,westcoast,eastcoast,inland,southside_A,northside_A,westside_A,eastside_A,center_A,northwestside_A,northeastside_A,southwestside_A,southeastside_A,westcoast_A,eastcoast_A,southside_B,northside_B,westside_B,
+residential,educational,institutional,assembly,business,mercantile,industrial,storage,wholesale,mixed,hazardous,detached,semi-detached,multi-storey,slums,unsafe,special,carpark,area_A,area_B,area_C,area_D,area_E,area_F,area51,

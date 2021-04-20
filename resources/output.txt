@@ -1,11 +1,2 @@
-Thailand
-    westside
-      eastcoast
-      southeastside
-      westcoast
-    mixed,Thailand,ee=327.05,de=768.98,s=645.96,em=117.72,h=754.61,dm=960.1,ea=365.73,da=327.9,
-    southwestside
-      westside
-      northside
-      semi-detached,southwestside,ee=717.41,de=425.98,s=721.28,em=411.18,h=785.1,dm=455.28,ea=573.47,da=251.77,
+Bolivia
 
