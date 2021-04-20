@@ -110,10 +110,13 @@ public class FileGenerator implements TreeGenerator
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line = "";
             int i = 0;
+            int numLine = getNumberLine( filename );
+            context = new String[numLine];
 
             line = reader.readLine();
             while ( line != null ) {
                 context[i] = line;
+                ++i;
                 line = reader.readLine();
             }
             reader.close();
@@ -131,5 +134,25 @@ public class FileGenerator implements TreeGenerator
             leaf = true;
 
         return leaf;
+    }
+
+    private int getNumberLine( String filename ) throws ModelException
+    {
+        int num = 0;
+        try
+        {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line = "";
+
+            line = reader.readLine();
+            while ( line != null ) {
+                ++num;
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            throw new ModelException("Error while reading the file: " + e.getMessage());
+        }
+        return num; 
     }
 }

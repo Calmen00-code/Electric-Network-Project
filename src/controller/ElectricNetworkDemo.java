@@ -20,7 +20,7 @@ public class ElectricNetworkDemo
 
             // Minimum parameter that the user must supply
             if ( splitArg.length < 2 )
-                printMsg.print(null, "Arguments cannot be empty!\n");
+                printMsg.print(null, "At least 2 arguments are expected! Please read the README.txt\n");
             else if ( splitArg.length > 4 )
                 printMsg.print(null, "Number of Arguments exceeded the limit!\n");
             else
@@ -77,7 +77,7 @@ public class ElectricNetworkDemo
                                 // Therefore, context can be read and write directly
                                 context = generator.readFile(splitArg[1]);
                                 for ( int i = 0; i < context.length; ++i )
-                                    str += context[i];
+                                    str += context[i] + "\n";
                                 writeFile.print( str, splitArg[3] );
                             }
                             else
@@ -125,10 +125,9 @@ public class ElectricNetworkDemo
                     if ( splitArg[2].contains(".") ) { 
                         if ( splitArg.length > 3 )
                             throw new ControllerException("Maximum mode selected has reached!\n");
-                        // TODO: Write to file mode for 
-                        //       random generated tree
                         city = generator.generateTree( "resources/random.txt" );
-                        str = city.toFileString();
+                        str += city.getName() + "\n";
+                        str += city.toString();
                         writeFile.print( str, splitArg[2] );
                     }
                     else
