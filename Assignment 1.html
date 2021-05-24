@@ -1,0 +1,481 @@
+
+<!-- saved from url=(0074)file:///C:/Users/Calmen/Downloads/OOSE_2021s1_Assignment1.md_20072144.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+                <title>Assignment 1</title>
+                <style>@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&family=Merriweather&family=Merriweather+Sans&display=swap');
+
+@media screen {
+    html { background: #404040; }
+    body {
+        background: 
+    }
+}
+
+html {
+    font-family: 'Merriweather', serif;
+    line-height: 1.8em;
+    background: #404040;
+}
+
+body {
+    background: white;
+    max-width: 50em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4em;
+
+    counter-reset: section;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+}
+
+h2:not(.notnumbered) {
+    counter-reset: subsection;
+    counter-increment: section;
+}
+
+h2:not(.notnumbered)::before {
+    content: counter(section);
+    margin-right: 1em;
+}
+
+h3:not(.notnumbered) {
+    counter-reset: subsubsection;
+    counter-increment: subsection;
+}
+
+h3:not(.notnumbered)::before {
+    content: counter(section) "." counter(subsection);
+    margin-right: 1em;
+}
+
+h4:not(.notnumbered) {
+    counter-increment: subsubsection;
+}
+
+h4:not(.notnumbered)::before {
+    content: counter(section) "." counter(subsection) "." counter(subsubsection);
+    margin-right: 1em;
+}
+
+
+/* Code */
+
+code {
+    font-family: 'Inconsolata', monospace;
+}
+
+code .c1, code .cm { color: #c06000; } /* comments */
+code .kd, code .kt { color: blue; }    /* keywords */
+code .o, code .p   { color: red; }     /* symbols */
+code .s            { color: green; }   /* string literals */
+code .mi, code .mf, 
+code .mh, code .mb { color: #008080; } /* number literals */
+
+/*.command::before {
+    content: "$";
+}*/
+
+
+
+
+/* Boxes */
+
+.admonition {
+    border-radius: 5px;
+    border: 1px solid #606060;
+    padding: 0 1em;
+    margin: 1ex 0;
+}
+
+.admonition-title {
+    font-weight: bold;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.admonition.note {
+    border: 1px solid #0060c0;
+    background: #c0d8ff;
+}
+
+.admonition.warning {
+    border: 1px solid #c03030;
+    background: #ffc0c0;
+}
+
+
+/* Lists */
+
+ul > li::marker {
+    color: #0080ff;
+    content: '\25A0\00A0';
+}
+
+ul ul > li::marker {
+    color: #80c0ff;
+    content: '\25B8\00A0';
+}
+
+ol > li::marker {
+    color: #ff6000;
+    font-weight: bold;
+}
+
+li {
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+}
+
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+}
+
+table thead tr {
+    background-color: #ffc080;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td, th {
+    padding: 0.5em 1em;
+    text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff0e0;
+}
+
+
+/* Experimental */
+p::after, li::after, h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
+    position: absolute;
+/*     content: "12345678"; */
+/*     color: #fefefe; */
+}
+</style>
+            <style> 
+            h1::after, h2::after, h3::after, h4::after, h5::after, h6::after, p::after {                                                                                          
+                position: absolute; 
+                color: #fefefe; 
+                font-size: small; 
+                content: "20072144"; 
+            }
+            
+            .note p::after {                                                                                          
+                color: #00000000; 
+            }
+        </style></head>
+            <body><p style="color: red; text-align: center;">Please do not share this file. It has been fingerprinted with your ID (20072144).</p>
+                <h1>Assignment 1</h1>
+                <div class="admonition preamble">
+<p><strong>Object  Oriented Software Engineering</strong>   (COMP2003/6005)</p>
+<p><strong>Due:</strong>  Thursday  22  April,  23:59<br>
+<strong>Weight:</strong> 35%  of the unit   mark</p>
+</div>
+<p>This  assignment  will  cover  the first  four topics in   the  unit,  up  to  and including  object dependencies.</p>
+<h2>Your Task</h2>
+<p>Design   and  implement  the  system  described below  under <a href="file:///C:/Users/Calmen/Downloads/OOSE_2021s1_Assignment1.md_20072144.html#problem_description">Problem Description</a>.   Specifically:</p>
+<ul>
+<li>
+<p>Use  either  Java,  C#,  C++ or  Python to implement   the  system  described.  </p>
+<ul>
+<li>Your  code should  be of high   quality,  with  consistent  formatting  and meaningful  commenting.</li>
+<li>If using Java,   it  is  highly  recommended  that you  use Gradle or   Ant.</li>
+<li>If  using  C#,  please  only use  <a href="https://www.mono-project.com/docs/about-mono/languages/csharp/">features supported by   Mono</a>.</li>
+<li>If  using  Python,  please  use <a href="https://docs.python.org/3/library/typing.html">type  hinting</a> for all   method/function  parameters  and  return  types.</li>
+</ul>
+</li>
+<li>
+<p>In your  design, use (a)   the  Strategy  Pattern  and/or  Template Method  Pattern (one or   both),  and  (b)  the  Composite Pattern.</p>
+<ul>
+<li>You  may <em>also</em> use   other  patterns  if  you  wish (whether  or not they   are  described  in  the  unit), but  that is purely   optional.</li>
+</ul>
+</li>
+<li>
+<p>Provide  a  <code>README.txt</code>  that  briefly explains  how to compile   and  run  your  code,  if there  are any facets   of  this  that  the  marker needs  to be aware   of.</p>
+</li>
+<li>
+<p>Provide  a  UML  class  diagram giving  a structural overview   of  your  design.  </p>
+<ul>
+<li>Your  UML must  accurately represent your   design.</li>
+<li>Use  a  proper  tool;  e.g., <a href="https://www.umlet.com/">Umlet</a>,  <a href="https://draw.io/">draw.io</a>, <a href="https://plantuml.com/">PlantUML</a> or   others.  Avoid  tools  that  have no  explicit support for   UML.</li>
+<li>Make  the  diagram  layout  as neat  and logical as   practical.  Minimise  crossing  lines.</li>
+<li>If  in doubt  as to whether   or  not  to  represent  certain things  on the diagram,   err  on  the  side  of more  detail. But it   is  generally  unnecessary  to  show constructors  and (in most   cases)  usage  dependencies.</li>
+</ul>
+</li>
+<li>
+<p>Provide  a  response to  each of the   <a href="file:///C:/Users/Calmen/Downloads/OOSE_2021s1_Assignment1.md_20072144.html#marking_criteria">marking  criteria</a>.  </p>
+<ul>
+<li>Record  this  in a  file called <code>criteria.txt</code>.</li>
+<li>See   below  for  more  information.</li>
+</ul>
+</li>
+</ul>
+<h2>Submission</h2>
+<p>Submit  all of  the above, plus   a  signed  declaration  of  originality, to  the appropriate area   on  Blackboard.  Include  everything  in a  single .zip/.tar.gz file   (<em>please  avoid</em>  .rar,  .zipx  or .7z).  You do not   need  to  include  any  compiled code.</p>
+<p>You  must verify that   your  submission  is  correct  and not  corrupted. Once you   have  submitted,  please  download  your own  submission and thoroughly   check  that  it  is  intact. You  may make multiple   submissions.  Only  your  last  one will  be marked. </p>
+<h2 id="marking_criteria">Marking   Criteria</h2>
+<p>The  assignment  will  be  marked out  of 30. There   are  six  marking  criteria,  each worth  5 marks, as   follows:</p>
+<ol>
+<li>
+<p>Appropriate  use  of  containers.</p>
+</li>
+<li>
+<p>Clear  and distinct  package/class/interface/method responsibilities.</p>
+<ul>
+<li>It is   required  that  you  create  and use  packages or namespaces,   depending  on  the  language.</li>
+<li>Packages,  classes, interfaces  and methods must   all  have  a  clear  logical purpose.</li>
+<li>Packages,  classes, interfaces and   methods  must  be  appropriately-named,  in light  of what they   contain.</li>
+</ul>
+</li>
+<li>
+<p>Appropriate  error  handling.</p>
+<ul>
+<li>For  all  possible user  errors, the program   must  take  appropriate  alternative  action, and  should <em>not</em> simply   abort  with  a  stack  trace. <br>
+  (A user error   means  an  error  caused  by something  outside the program   and  the  platform  on  which it  runs.) </li>
+<li>The program   must  <em>not</em>  treat  internal  errors (such  as a <code>NullPointerException</code>)   as  if  they  were  a user  errors. Ideally there   should  be  no  internal  errors, but  the program should   be  written  such  that,  <em>if they  did happen</em>, they   <em>would</em>  abort  the  program.</li>
+<li>The  program must  use exception handling   mechanisms  appropriately  to  do  both of  the above.</li>
+</ul>
+</li>
+<li>
+<p>Appropriate use   of  the  Strategy  Pattern  and/or Template  Method Pattern.</p>
+<p>We are   <em>not  just</em>  interested  in  whether you  can mechanically implement   the  parts  of  these  patterns. You  must use one   (or  both  of  them)  for a  practical purpose. Is   it  solving  a  problem?  What is  it decoupling? Are   the  subclasses  actually  doing  substantively different  things?</p>
+<p>Be warned against:</p>
+<ul>
+<li>Creating   subclass  objects  in  the  same place  you’re calling them.</li>
+<li>Querying   which  subclass  you’re  dealing  with.</li>
+</ul>
+<p>The purpose  of Strategy/Template Method   collapses  if  you  do  these things.</p>
+</li>
+<li>
+<p>Appropriate  use of the   Composite  Pattern.</p>
+<p>Similar  advice  applies  to the  above.</p>
+</li>
+<li>
+<p>Clear and correct   UML.</p>
+</li>
+</ol>
+<h3>Does  the  program  run  correctly?</h3>
+<p>This isn’t  strictly one of   the  six  criteria,  but  rather a  cross-cutting concern that   affects  all  of  them.</p>
+<p>The  marker will  attempt to compile   and  run  your  code.  If it  does not work   correctly,  this  will  have  implications for  how we assess   the  other  criteria.</p>
+<h3>Your  Responses  to the  Criteria</h3>
+<p>You must provide   a  response  to  each  of the  six critera, as   part  of  your  submission.  That is,  for each individual   criterion,  write  a  paragraph  or two  justifying the choices   you  have  made.  Include  all your  discussion in <code>criteria.txt</code>.</p>
+<p>This   fulfils  two  purposes:</p>
+<ol>
+<li>We  want  to know  that you can   articulate,  in  plain  English,  what you  are doing. This   is  part  of  the  task.</li>
+<li>If you  do something unusual/unorthodox,   this  is  your  opportunity  to justify  it.</li>
+</ol>
+<p>One way to   think  about  what  you’re  doing here  is this: imagine   that  the  marker  is  slightly sceptical  about whether to   award  you  the  marks  for a  given criterion. What   would  you  say  to  convince them?</p>
+<p>Make  your responses concise   and  to-the-point.  Address  each  criterion separately.</p>
+<h2 id="problem_description">Problem  Description</h2>
+<p>Your application should   model  a  city’s  electricity  usage. It  must first either   <em>read  in</em>  OR  <em>randomly  generate</em> a  set of data   representing  the  structure  of  the network.  Then it must   either  <em>write  out</em>  OR  <em>display</em> the  network. The user   chooses  which  actions  to  perform via  the command-line.</p>
+<h3>Data</h3>
+<p>The program   must  manage  an  object  structure representing  a hierarchical electricity   network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For  anyone  who  actually  knows about  such things, this   is  almost  certainly  <em>not</em>  how a  real-world electricity network   actually  works,  so  just  pretend we’re  in a fantasy   world!</p>
+</div>
+<p>Our  network  is  a  tree. At  the root is   the  whole  city.  Each  non-root node  represents a part   of  the  city;  e.g.,  a district,  suburb, street, building,   floor,  or  some  other  kind of  subdivision. The tree’s   leaf  nodes  are  of  course the  smallest meaningful parts   of  the  network  (say,  individual houses,  or appartments, or   floors  of  large  buildings,  though there’s  no difference between   these  for  our  purposes).</p>
+<p>There  is no  limit to the   depth  of  the  tree,  or to  the number of   child  nodes  each  node  may have.  A tree containing   just  a  single  root  node is  also valid.</p>
+<p>Each node   in  the  tree  has  a name  consisting of letter   and/or  digit  characters  (no  spaces or  other symbols), and   all  nodes  must  have  different names.  Each <em>leaf</em> node   also  has  a  series  of “power  consumption” numbers (non-negative   real  numbers),  one  for  each of  several “categories”. A   category  is  one  of  the following:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Abbreviation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weekday morning</td>
+<td>dm</td>
+</tr>
+<tr>
+<td>Weekday afternoon</td>
+<td>da</td>
+</tr>
+<tr>
+<td>Weekday evening</td>
+<td>de</td>
+</tr>
+<tr>
+<td>Weekend morning</td>
+<td>em</td>
+</tr>
+<tr>
+<td>Weekend afternoon</td>
+<td>ea</td>
+</tr>
+<tr>
+<td>Weekend evening</td>
+<td>ee</td>
+</tr>
+<tr>
+<td>Heatwave</td>
+<td>h</td>
+</tr>
+<tr>
+<td>Special event</td>
+<td>s</td>
+</tr>
+</tbody>
+</table>
+<p>The  abbreviations will be   used  in  the  file  format shown  below. The exact   meaning  of  these  categories  isn’t that  important for our   purposes.  Suffice  it  to  say that  each leaf node   has  a  particular  power  consumption <em>for  each category</em>.</p>
+<h3>Command-Line</h3>
+<p>All user   input  occurs  via  the  command-line. The  exact method of   executing  the  program  will  depend on  the language and   build  system,  so  here’s  what we  mean first:</p>
+<table>
+<thead>
+<tr>
+<th>Language/Environment</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java, using <code>gradle run</code>:</td>
+<td><code>./gradlew run --args="</code><em>[arguments]</em><code>"</code></td>
+</tr>
+<tr>
+<td>Java, directly invoking a <code>jar</code> file:</td>
+<td><code>java -jar program.jar</code> <em>[arguments]</em></td>
+</tr>
+<tr>
+<td>C#, using Mono:</td>
+<td><code>mono program.exe</code> <em>[arguments]</em></td>
+</tr>
+<tr>
+<td>Python:</td>
+<td><code>python program.py</code> <em>[arguments]</em></td>
+</tr>
+<tr>
+<td>C++:</td>
+<td><code>./program</code> <em>[arguments]</em></td>
+</tr>
+</tbody>
+</table>
+<p>All user   input  must  occur  via  this method.  The user must   supply  the  following:</p>
+<ul>
+<li>
+<p>Either  “<code>-g</code>”  for generate,  or “<code>-r</code>” for   read,  where  the  latter  must be  followed by an   input  filename.</p>
+</li>
+<li>
+<p>Either  “<code>-d</code>”  for  display, or  “<code>-w</code>” for write,   where  the  latter  must  be followed  by an output   filename  (which  cannot  be  the same  as the input   filename,  if  provided).</p>
+</li>
+</ul>
+<p>So,  if  the application  is Java based,   and  we  want  to  use Gradle,  the following are   all  valid  means  of  invocation:</p>
+<div class="highlight"><pre><span></span><code>./gradlew run --args="-g -d"
+./gradlew run --args="-g -w outputdata.csv"
+./gradlew run --args="-r inputdata.csv -d"
+./gradlew run --args="-r inputdata.csv -w outputdata.csv"
+</code></pre></div>
+<p>It is  an error if   neither  <code>-g</code>  nor  <code>-r</code>  are provided,  <em>or</em> if both   are  provided,  or  if  <code>-r</code> is  not followed by   a  filename.  Similarly  for  <code>-d</code> and  <code>-w</code>. (Optionally, you   may  allow  <code>-d</code>/<code>-w</code>  to  be written  before <code>-g</code>/<code>-r</code>. Or   you  can  require  the  user to  provide them in   the  order  indicated  above.)</p>
+<p>In  the case  of such an   error,  the  program  must  say what  went wrong.</p>
+<h3>Reading and   Writing</h3>
+<p>If  <code>-r</code>  is  given,  the program  must read and   validate  data  from  the  file specified.  If <code>-w</code> is   given,  the  program  must  write its  data to the   (other)  file  specified.  </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In  the event  that both <code>-r</code>   and  <code>-w</code>  are  given,  both apply  as normal; i.e.,   the  data  should  be  read from  one file and,   <em>if  valid</em>,  written  to  another. The  validation requirement means   the  data  cannot  just  be blindly  copied.</p>
+</div>
+<p>The same file   format  must  be  used  for both  reading and writing   the  data.  The  data  file should  contain one line   per  tree  node:</p>
+<ul>
+<li>
+<p>The  first  line of  the file specifies   the  name  of  the  root node:</p>
+<p><em>[name]</em></p>
+</li>
+<li>
+<p>A  line representing a   non-root,  non-leaf  node  contains  a name  and a parent   node  name,  separated  by  a comma:</p>
+<p><em>[name]</em><code>,</code><em>[parent-name]</em></p>
+<p>The  parent node (which   may  or  may  not  be the  root) must be   specified  on  an  earlier  line of  the same file.</p>
+</li>
+<li>
+<p>For   leaf  nodes,  the  line  contains the  node name, parent   node  name,  and  the  power consumption  for one or   more  categories:</p>
+<p><em>[name]</em><code>,</code><em>[parent-name]</em><code>,</code><em>[cat1]</em><code>=</code><em>[power1]</em><code>,</code><em>[cat2]</em><code>=</code><em>[power2]</em><code>,</code>…</p>
+<p>Each  <em>[catN]</em>  is  an <em>abbreviation</em>  of a power   consumption  category,  and  each  <em>[powerN]</em> is  a non-negative real   number  specifying  the  corresponding  power consumption.  The categories can   be  given  in  any  order, and  can also be   omitted,  in  which  case  the power  consumption is assumed   to  be  zero  for  that category.</p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code>city
+northside,city
+southside,city
+building1,northside,h=675.015,dm=550.8
+building2,southside,s=444.2,em=540.1,da=97.9
+building3,southside,ee=10956
+</code></pre></div>
+</div>
+<p>It  is an error   if  an  input  file  does not  exist or is   not  in  the  expected  format, or  if some storage-related   error  occurs  during  either  reading or  writing. In such   cases,  the  program  must  <em>gracefully</em> exit  with an appropriate   error  message.</p>
+<h3>Random  Generation</h3>
+<p>If  <code>-g</code>  is given,  the entire tree   must  be  auto-generated.  The  method for  doing this is   simplistic,  and  does  <em>not</em>  reflect the  limits on what   a  tree  can  look  like in  general.</p>
+<ol>
+<li>Generate a random   tree  depth  between  1  and 5  (inclusive, where 1   means  the  tree  consists  only of  a root node).</li>
+<li>Generate   the  root  node,  and  generate a  name for it.</li>
+<li>Until   the  tree  has  reached  the required  depth:<ul>
+<li>For each existing   node:<ul>
+<li>Generate  a  random  number  of child  nodes, between 2   and  5  (inclusive).</li>
+<li>Generate  a  name for  each new node.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>For   each  leaf  node,  and  for each  power consumption category,   generate  a  random  number  between 0.0  and 1000.0.</li>
+</ol>
+<p>The names   of  the  nodes  do  not necessarily  need to be   randomly  chosen,  but  must  be unique.</p>
+<h3>Displaying</h3>
+<p>If  <code>-d</code> is given,   two  things  must  happen:</p>
+<ol>
+<li>
+<p>The  tree must  be displayed (after   it  has  been  read  in or  generated).</p>
+<p>To display the   tree,  output  the  names  of the  nodes, one per   line,  with  indentation  used  to indicate  which node is   a  child  of  which  other node.  The root node   has  no  indentation.</p>
+<div class="admonition example">
+<p class="admonition-title">Example  (based  on the  file above)</p>
+<div class="highlight"><pre><span></span><code>city
+    northside
+        building1
+    southside
+        building2
+        building3
+</code></pre></div>
+</div>
+<p>(If you   wish,  you  may  use  ASCII/Unicode line-drawing  characters to draw   tree-like  lines  from  parent  to child  nodes.)</p>
+</li>
+<li>
+<p>The <em>total</em> power   consumption  for  each  category  (across the  whole city) must   be  calculated  and  displayed.</p>
+<p>For  a given  category, you can   calculate  the  total  power  consumption by  simply adding up   the  power  consumption  of  each leaf  node for that   category.</p>
+<div class="admonition example">
+<p class="admonition-title">Example  (not  based  on  any previous  example)</p>
+<div class="highlight"><pre><span></span><code>Weekday morning   : 2005.88
+Weekday afternoon : 4140.7
+Weekday evening   : 5539.9
+Weekend morning   : 3221.0
+Weekend afternoon : 5155.2
+Weekend evening   : 7883.2
+Heatwave          : 12270.8
+Special event     : 6887.5
+</code></pre></div>
+</div>
+</li>
+</ol>
+<h2>Academic Integrity</h2>
+<p>Please see   the  <em>Coding  and  Academic  Integrity Guidelines</em>  on Blackboard.</p>
+<p>In summary,   this  is  an  assessable  task. If  you use someone   else’s  work  or  assistance  to help  complete part of   the  assignment,  where  it’s  intended that  you complete it   yourself,  you  will  have  compromised the  assessment. You will   not  receive  marks  for  any parts  of your submission   that  are  not  your  own original  work. Further, if   you  do  not  <em>reference</em>  any external  sources that you   use,  you  are  committing  plagiarism and/or  collusion, and penalties   for  academic  misconduct  may  apply.</p>
+<p>Curtin also  provides general advice   on  academic  integrity  at  <a href="http://academicintegrity.curtin.edu.au/">academicintegrity.curtin.edu.au</a>.</p>
+<p>The unit  coordinator may require   you  to  provide  an  oral justification  of, or to   answer  questions  about,  any  piece of  written work submitted   in  this  unit.  Your  response(s) may  be referred to   as  evidence  in  an  academic misconduct  inquiry. </p>
+            
+            
+</body></html>

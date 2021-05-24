@@ -1,0 +1,10 @@
+Bolivia
+    institutional,Bolivia,ee=268.19,de=751.11,s=541.3,em=540.96,h=338.34,dm=344.38,ea=752.61,da=268.38,
+    semi-detached,Bolivia,ee=206.85,de=470.14,s=811.65,em=873.33,h=501.09,dm=596.27,ea=954.95,da=936.55,
+    eastside
+      assembly,eastside,ee=585.56,de=657.37,s=375.15,em=977.04,h=245.87,dm=630.16,ea=403.58,da=385.9,
+      eastcoast
+      westcoast
+      westcoast
+    mixed,Bolivia,ee=800.44,de=362.5,s=279.55,em=855.82,h=900.39,dm=501.27,ea=784.06,da=64.99,
+

@@ -1,0 +1,9 @@
+China
+    eastside
+      slums,eastside,ee=128.03,de=662.12,s=596.9,em=790.32,h=263.76,dm=164.94,ea=419.08,da=54.27,
+      center
+        industrial,center,ee=509.05,de=430.83,s=352.08,em=262.84,h=735.02,dm=341.64,ea=983.27,da=708.18,
+        residential,center,ee=900.36,de=660.7,s=991.47,em=846.82,h=13.67,dm=973.56,ea=628.69,da=295.9,
+      special,eastside,ee=139.79,de=539.36,s=272.57,em=620.69,h=700.95,dm=95.52,ea=232.08,da=999.09,
+    educational,China,ee=198.47,de=831.28,s=190.72,em=13.2,h=678.12,dm=244.02,ea=3.52,da=501.39,
+

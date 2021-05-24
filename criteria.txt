@@ -56,34 +56,17 @@ The Strategy Pattern was used for three times in this application.
 
 Which can be found in,
 
-view: The Output.java interface was implemented by PrintMessage.java, ScreenDisplay.java, and WriteFileTree.java.
+view: The Output.java interface was implemented by PrintMessage.java, 
+      ScreenDisplay.java, and WriteFileTree.java.
 
-model: The City.java interface was implemented by CityBuilding.java,
-       CityComponent.java to implements the Composite Pattern. Where CityComponent represents the non-leaf node,
-       and CityBuilding.java represents the leaf node.
-
-       The TreeGenerator.java interface was implemented by FileGenerator.java and RandomGenerator.java which
-       shares the common methods: generateTree, readFile, getDepth but with different algorithm for each file.
-
-Using the Strategy Pattern in such a way that defined above will enable polymorphism. For example, 
-when -g and -r argument was given, object of RandomGenerator and FileGenerator is created respectively
-but they are both assign into its parent class reference, which is of type TreeGenerator. In this case,
-the program will not need to know the specific type of the subclass (FileGenerator or RandomGenerator). 
-The method generateTree, which was overriden in both FileGenerator and RandomGenerator can be called using 
-the parent object to perform different operation in FileGenerator or RandomGenerator.
-
-
-5. Appropriate use of the Composite Pattern
-
-By using Composite Pattern, we can create a hierachy of objects. For example, the network of the electricity 
-tree will start from the root, which is the city. The city then can have different district, which is the 
-non-leaf node. A non-leaf node could contain a leaf or another non-leaf node, which is the same as the root city.
-The network will stops when it reaches the leaf node, which is the CityBuilding instance. Therefore, we could
-represents the entire electricity networks with composite pattern because it shows a hierachy of objects 
-CityComponent, which is the non-leaf node and also the objects for CityBuilding, which is the leaf node.
+model: 
 
 
 
-6. Clear and correct UML
 
-The UML will be provided in a form of Image in this same Assignment folder.
+
+5. 
+
+
+
+6. 
